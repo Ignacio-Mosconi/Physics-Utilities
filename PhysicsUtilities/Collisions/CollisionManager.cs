@@ -98,8 +98,8 @@ namespace PhysicsUtilities
                     normalA.x = -normalB.x;
                 }
 
-                boxA.OnCollision.Invoke(boxB, normalA, distanceToMove);
-                boxB.OnCollision.Invoke(boxA, normalB, distanceToMove);
+                boxA.ResolveCollision(boxB, normalA, distanceToMove);
+                boxB.ResolveCollision(boxA, normalB, distanceToMove);
             }
         }
 

@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-struct LayerKey
-{
-    public LayerMask layer;
-    public int index;
-
-    public LayerKey(LayerMask l, int i)
-    {
-        layer = l;
-        index = i;
-    }
-}
-
 namespace PhysicsUtilities
 {
+    struct LayerKey
+    {
+        public LayerMask layer;
+        public int index;
+
+        public LayerKey(LayerMask l, int i)
+        {
+            layer = l;
+            index = i;
+        }
+    }
+
     public class CollisionManager : MonoBehaviour
     {
         static CollisionManager instance;

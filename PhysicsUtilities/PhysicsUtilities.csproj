@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -54,11 +54,12 @@
     <Compile Include="Collisions\CustomBoxCollider2D.cs" />
     <Compile Include="Collisions\CustomCircleCollider2D.cs" />
     <Compile Include="Collisions\CustomCollider2D.cs" />
+    <Compile Include="Physics\PhysicalMovements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)$(ProjectName)\$(OutDir)$(TargetFileName)" "C:\Users\nacho\Documents\Unity Projects\Física\Physics-Assignment-2\Assets\Dependencies\Physics Utilities"
+copy "$(SolutionDir)$(ProjectName)\$(OutDir)$(TargetName).pdb" "C:\Users\nacho\Documents\Unity Projects\Física\Physics-Assignment-2\Assets\Dependencies\Physics Utilities"</PostBuildEvent>
   </PropertyGroup>
 </Project>

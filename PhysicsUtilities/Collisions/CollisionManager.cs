@@ -20,8 +20,6 @@ namespace PhysicsUtilities
     {
         static CollisionManager instance;
 
-        [SerializeField] LayerMask[] collisionLayers;
-
         Dictionary<LayerKey, List<CustomCollider2D>> colliders = new Dictionary<LayerKey, List<CustomCollider2D>>();
 
         void Awake()

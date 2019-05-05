@@ -15,12 +15,12 @@ namespace PhysicsUtilities
     [RequireComponent(typeof(SpriteRenderer))]
     public abstract class CustomCollider2D : MonoBehaviour
     {
-        [SerializeField] float mass = 1f;
         [SerializeField] bool collisionEnabled = true;
         [SerializeField] bool isTrigger = false;
+        [SerializeField] [Range(0f, 10000f)] float mass = 1f;
 
-        [HideInInspector] public TriggerEvent OnTrigger = new TriggerEvent();
-        [HideInInspector] public CollisionEvent OnCollision = new CollisionEvent();
+        TriggerEvent onTrigger = new TriggerEvent();
+        CollisionEvent onCollision = new CollisionEvent();
 
         protected SpriteRenderer spriteRenderer;
 
@@ -39,10 +39,10 @@ namespace PhysicsUtilities
 
                 transform.Translate(normal * penetration * penetrationMult);
 
-                OnCollision.Invoke(collider, normal, penetration);
+                onCollision.Invoke(collider, normal, penetration);
             }
             else
-                OnTrigger.Invoke(collider);      
+                onTrigger.Invoke(collider);      
         }
 
         public abstract ColliderType GetColliderType();
@@ -56,6 +56,16 @@ namespace PhysicsUtilities
         {
             get { return collisionEnabled; }
             set { collisionEnabled = value; }
+        }
+
+        public TriggerEvent OnTrigger
+        {
+            get { return onTrigger;  }
+        }
+
+        public CollisionEvent OnCollision
+        {
+            get { return onCollision;  }
         }
     }
 }

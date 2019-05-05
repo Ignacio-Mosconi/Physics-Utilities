@@ -10,9 +10,9 @@ namespace PhysicsUtilities
         Forward
     }
 
-    public static class PhysicalMovements
+    public static class PhysicalMotions
     {
-        public static void LinearMotion(Transform transform, Vector3 direction, float speed)
+        public static void Linear(Transform transform, Vector3 direction, float speed)
         {
             direction.Normalize();
 
@@ -24,13 +24,14 @@ namespace PhysicsUtilities
             transform.position = newPosition;
         }
 
-        public static void ConstantAccelerationMotion(Transform transform, AccelerationAxis axis, ref float initialAxisSpeed, 
-                                                    float acceleration, float maxSpeed)
+        public static void ConstantAcceleration(Transform transform, AccelerationAxis axis, ref float initialAxisSpeed, 
+                                                    float acceleration, float maxSpeed = 0f)
         {
             Vector3 newPosition = transform.position;
             float currentAxisSpeed = acceleration * Time.deltaTime + initialAxisSpeed;
 
-            currentAxisSpeed = Mathf.Clamp(currentAxisSpeed, -maxSpeed, maxSpeed);
+            if (maxSpeed > 0f)
+                currentAxisSpeed = Mathf.Clamp(currentAxisSpeed, -maxSpeed, maxSpeed);
             
             switch (axis)
             {
@@ -50,7 +51,7 @@ namespace PhysicsUtilities
             transform.position = newPosition;
         }
 
-        public static IEnumerator PerformObliqueMotion2D(Transform transform, float speed, float angle, float gravity)
+        public static IEnumerator PerformObliqueShot2D(Transform transform, float speed, float angle, float gravity)
         {
             float time = 0f;
             float initialSpeedX = Mathf.Cos(angle * Mathf.Deg2Rad) * speed;

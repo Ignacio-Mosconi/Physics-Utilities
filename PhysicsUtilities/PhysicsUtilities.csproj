@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collisions\CollisionManager.cs" />
-    <Compile Include="Collisions\CustomBoxCollider2D.cs" />
-    <Compile Include="Collisions\CustomCircleCollider2D.cs" />
+    <Compile Include="Collisions\BoundingBox.cs" />
+    <Compile Include="Collisions\BoundingCircle.cs" />
     <Compile Include="Collisions\CustomCollider2D.cs" />
-    <Compile Include="Physics\PhysicalMovements.cs" />
+    <Compile Include="Physics\PhysicalMotions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

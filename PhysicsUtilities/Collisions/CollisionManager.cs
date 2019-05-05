@@ -51,11 +51,11 @@ namespace PhysicsUtilities
                                         ColliderType colliderBType = colliderB.GetColliderType();
 
                                         if (colliderAType == ColliderType.Box && colliderBType == ColliderType.Box)
-                                            CheckBoxAndBoxCollision(colliderA as CustomBoxCollider2D, colliderB as CustomBoxCollider2D);
+                                            CheckBoxAndBoxCollision(colliderA as BoundingBox, colliderB as BoundingBox);
                                         if (colliderAType == ColliderType.Circle && colliderBType == ColliderType.Box)
-                                            CheckCircleAndBoxCollision(colliderA as CustomCircleCollider2D, colliderB as CustomBoxCollider2D);
+                                            CheckCircleAndBoxCollision(colliderA as BoundingCircle, colliderB as BoundingBox);
                                         if (colliderAType == ColliderType.Box && colliderBType == ColliderType.Circle)
-                                            CheckCircleAndBoxCollision(colliderB as CustomCircleCollider2D, colliderA as CustomBoxCollider2D);
+                                            CheckCircleAndBoxCollision(colliderB as BoundingCircle, colliderA as BoundingBox);
                                     }
                                 }
                             }
@@ -65,7 +65,7 @@ namespace PhysicsUtilities
             }
         }
 
-        void CheckBoxAndBoxCollision(CustomBoxCollider2D boxA, CustomBoxCollider2D boxB)
+        void CheckBoxAndBoxCollision(BoundingBox boxA, BoundingBox boxB)
         {
             Vector2 posA = boxA.transform.position;
             Vector2 posB = boxB.transform.position;
@@ -103,7 +103,7 @@ namespace PhysicsUtilities
             }
         }
 
-        void CheckCircleAndBoxCollision(CustomCircleCollider2D circle, CustomBoxCollider2D box)
+        void CheckCircleAndBoxCollision(BoundingCircle circle, BoundingBox box)
         {
             Vector2 circlePos = circle.transform.position;
             Vector2 boxPos = box.transform.position;

@@ -43,6 +43,21 @@ namespace PhysicsUtilities
             transform.position = newPosition;
         }
 
+        public static void UniformCircular2D(Transform pivot, Transform satellite, float radius, float angularSpeed, ref float angle)
+        {
+            Vector3 newPosition = satellite.position;
+
+            angle += angularSpeed * Time.deltaTime;
+
+            if (angle >= 360f)
+                angle -= 360f;
+
+            newPosition.x = pivot.position.x + pivot.right.x * Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+            newPosition.y = pivot.position.y + pivot.up.y * Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+
+            satellite.position = newPosition;
+        }
+
         public static IEnumerator PerformObliqueShot2D(Transform transform, float speed, float angle, float gravity)
         {
             float time = 0f;

@@ -32,7 +32,7 @@ namespace PhysicsUtilities
 
         public void ResolveCollision(CustomCollider2D collider, Vector2 normal, float penetration)
         {
-            if (!isTrigger)
+            if (!isTrigger && !collider.isTrigger)
             {
                 float massRatio = collider.Mass / collider.Mass;
                 float penetrationMult = 1f / (1f + massRatio);

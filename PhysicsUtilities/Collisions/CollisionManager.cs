@@ -138,8 +138,8 @@ namespace PhysicsUtilities
 
             if (collisionDetected)
             {
-                circle.OnTrigger.Invoke(box);
-                box.OnTrigger.Invoke(circle);
+                circle.ResolveCollision(box, Vector2.zero, 0f);
+                box.ResolveCollision(circle, Vector2.zero, 0f);
             }
         }
 

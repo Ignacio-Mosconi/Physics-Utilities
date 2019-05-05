@@ -3,20 +3,14 @@ using UnityEngine;
 
 namespace PhysicsUtilities
 {
-    public enum AccelerationAxis
-    {
-        Horizontal,
-        Vertical,
-        Forward
-    }
-
     public static class PhysicalMotions
     {
         public static void Linear(Transform transform, Vector3 direction, float speed)
         {
+            Vector3 newPosition = transform.position;
+
             direction.Normalize();
 
-            Vector3 newPosition = transform.position;
             newPosition.x += direction.x * speed * Time.deltaTime;
             newPosition.y += direction.y * speed * Time.deltaTime;
             newPosition.z += direction.z * speed * Time.deltaTime;
@@ -24,29 +18,27 @@ namespace PhysicsUtilities
             transform.position = newPosition;
         }
 
-        public static void ConstantAcceleration(Transform transform, AccelerationAxis axis, ref float initialAxisSpeed, 
-                                                    float acceleration, float maxSpeed = 0f)
+        public static void ConstantAcceleration(Transform transform, ref Vector3 initialSpeed, Vector3 acceleration, float maxSpeed = 0f)
         {
             Vector3 newPosition = transform.position;
-            float currentAxisSpeed = acceleration * Time.deltaTime + initialAxisSpeed;
+            float currentSpeedX = acceleration.x * Time.deltaTime + initialSpeed.x;
+            float currentSpeedY = acceleration.y * Time.deltaTime + initialSpeed.y;
+            float currentSpeedZ = acceleration.z * Time.deltaTime + initialSpeed.z;
 
             if (maxSpeed > 0f)
-                currentAxisSpeed = Mathf.Clamp(currentAxisSpeed, -maxSpeed, maxSpeed);
-            
-            switch (axis)
             {
-                case AccelerationAxis.Horizontal:
-                    newPosition.x += currentAxisSpeed * Time.deltaTime;
-                    break;
-                case AccelerationAxis.Vertical:
-                    newPosition.y += currentAxisSpeed * Time.deltaTime;
-                    break;
-                case AccelerationAxis.Forward:
-                    newPosition.z += currentAxisSpeed * Time.deltaTime;
-                    break;
+                currentSpeedX = Mathf.Clamp(currentSpeedX, -maxSpeed, maxSpeed);
+                currentSpeedY = Mathf.Clamp(currentSpeedY, -maxSpeed, maxSpeed);
+                currentSpeedZ = Mathf.Clamp(currentSpeedZ, -maxSpeed, maxSpeed);
             }
 
-            initialAxisSpeed = currentAxisSpeed;
+            newPosition.x += currentSpeedX * Time.deltaTime;
+            newPosition.y += currentSpeedY * Time.deltaTime;
+            newPosition.z += currentSpeedZ * Time.deltaTime;
+
+            initialSpeed.x = currentSpeedX;
+            initialSpeed.y = currentSpeedY;
+            initialSpeed.z = currentSpeedZ;
 
             transform.position = newPosition;
         }

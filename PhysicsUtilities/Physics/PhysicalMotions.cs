@@ -58,6 +58,30 @@ namespace PhysicsUtilities
             satellite.position = newPosition;
         }
 
+        public static void ConstantAccelerationCircular2D(Transform pivot, Transform satellite, float radius, float acceleration,
+                                                        ref float initialAngularSpeed, ref float angle, float maxSpeed = 0f)
+        {
+            Vector3 newPosition = satellite.position;
+            float currentAngularSpeed = 0f;
+
+            currentAngularSpeed = acceleration * Time.deltaTime + initialAngularSpeed;
+
+            if (maxSpeed > 0f)
+                currentAngularSpeed = Mathf.Clamp(currentAngularSpeed, -maxSpeed, maxSpeed);
+
+            angle += currentAngularSpeed * Time.deltaTime;
+
+            if (angle >= 360f)
+                angle -= 360f;
+
+            newPosition.x = pivot.position.x + pivot.right.x * Mathf.Cos(angle * Mathf.Deg2Rad) * radius;
+            newPosition.y = pivot.position.y + pivot.up.y * Mathf.Sin(angle * Mathf.Deg2Rad) * radius;
+
+            initialAngularSpeed = currentAngularSpeed;
+
+            satellite.position = newPosition;
+        }
+
         public static IEnumerator PerformObliqueShot2D(Transform transform, float speed, float angle, float gravity)
         {
             float time = 0f;

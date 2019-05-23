@@ -59,7 +59,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(SolutionDir)$(ProjectName)\$(OutDir)$(TargetFileName)" "C:\Users\nacho\Documents\Unity Projects\Física\Physics-Assignment-2\Assets\Dependencies\Physics Utilities"
-copy "$(SolutionDir)$(ProjectName)\$(OutDir)$(TargetName).pdb" "C:\Users\nacho\Documents\Unity Projects\Física\Physics-Assignment-2\Assets\Dependencies\Physics Utilities"</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)$(ProjectName)\$(OutDir)$(TargetFileName)" "C:\Users\Administrador\Desktop\Physics-Assignment-2\Assets\Dependencies\Physics Utilities"
+copy "$(SolutionDir)$(ProjectName)\$(OutDir)$(TargetName).pdb" "C:\Users\Administrador\Desktop\Physics-Assignment-2\Assets\Dependencies\Physics Utilities"</PostBuildEvent>
   </PropertyGroup>
 </Project>

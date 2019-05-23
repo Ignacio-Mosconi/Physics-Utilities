@@ -82,6 +82,18 @@ namespace PhysicsUtilities
             satellite.position = newPosition;
         }
 
+        public static void ConstantAccelerationCircular2D(float radius, float acceleration, ref float initialAngularSpeed, 
+                                                            float minSpeed, float maxSpeed)
+        {
+            float currentAngularSpeed = 0f;
+
+            currentAngularSpeed = acceleration * Time.deltaTime + initialAngularSpeed;
+
+            currentAngularSpeed = Mathf.Clamp(currentAngularSpeed, minSpeed, maxSpeed);
+
+            initialAngularSpeed = currentAngularSpeed;
+        }
+
         public static IEnumerator PerformObliqueShot2D(Transform transform, float speed, float angle, float gravity)
         {
             float time = 0f;
